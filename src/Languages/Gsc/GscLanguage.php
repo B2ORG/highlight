@@ -36,19 +36,23 @@ class GscLanguage extends BaseLanguage
             ...parent::getPatterns(),
 
             // OPERATORS
+            new OperatorPattern('+='),
+            new OperatorPattern('-='),
+            new OperatorPattern('*='),
             new OperatorPattern('%'),
             new OperatorPattern('/'),
             new OperatorPattern('*'),
             new OperatorPattern('=', occurances: 2),
+            new OperatorPattern('!='),
             new OperatorPattern('+', occurances: 3),
             new OperatorPattern('-', occurances: 3),
             new OperatorPattern('|', occurances: 2),
             new OperatorPattern('&', occurances: 2),
+            new OperatorPattern('<='),
             new OperatorPattern('<'),
+            new OperatorPattern('>='),
             new OperatorPattern('>'),
             new OperatorPattern('!'),
-            new OperatorPattern('+='),
-            new OperatorPattern('-='),
 
             // KEYWORDS
             new KeywordPattern('break'),
@@ -63,11 +67,13 @@ class GscLanguage extends BaseLanguage
             new KeywordPattern('in'),
             new KeywordPattern('implements'),
             // new KeywordPattern('namespace'),
+            new KeywordPattern('notify'),
             new KeywordPattern('return'),
             new KeywordPattern('switch'),
             new KeywordPattern('thread'),
             new KeywordPattern('wait'),
             new KeywordPattern('waittill'),
+            new KeywordPattern('waittillframeend'),
             new KeywordPattern('while'),
 
             // COMMENTS
