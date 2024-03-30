@@ -58,6 +58,7 @@ class GscLanguage extends BaseLanguage
             new KeywordPattern('break'),
             new KeywordPattern('case'),
             new KeywordPattern('continue'),
+            /** @todo Not highlighted (collon in switch statement i think) */
             new KeywordPattern('default'),
             new KeywordPattern('else'),
             new KeywordPattern('endon'),
@@ -88,6 +89,8 @@ class GscLanguage extends BaseLanguage
             // new ConstVariablePattern(),
 
             // PROPERTIES
+            /** @todo Not detected when used on function call, eg get_round_enemy_array().size */
+            /** @todo Not detected when used on array with specified key, eg level.zombie_weapons[weapon].is_in_box */
             new StructPropertyPattern(),
 
             // VARIABLES
@@ -97,6 +100,7 @@ class GscLanguage extends BaseLanguage
 
             // VALUES
             new NumericValuePattern(),
+            /** @todo if (isSubStr(key, "+")) + is detected as operator */
             new StringValuePattern(),
         ];
     }
