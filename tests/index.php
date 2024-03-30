@@ -25,6 +25,9 @@ $target = 'targets' . DIRECTORY_SEPARATOR . 'test.md';
 if (isset($_GET['target'])) {
     $target = $_GET['target'];
 }
+if (isset($_GET['target_file'])) { 
+    $target = 'targets' . DIRECTORY_SEPARATOR . $_GET['target_file'];
+}
 
 $contents = $markdown->convert(file_get_contents(__DIR__ . DIRECTORY_SEPARATOR . $target))->getContent();
 
