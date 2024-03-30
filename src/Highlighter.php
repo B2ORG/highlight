@@ -9,6 +9,7 @@ use Tempest\Highlight\Languages\Blade\BladeLanguage;
 use Tempest\Highlight\Languages\Css\CssLanguage;
 use Tempest\Highlight\Languages\DocComment\DocCommentLanguage;
 use Tempest\Highlight\Languages\Gdscript\GdscriptLanguage;
+use Tempest\Highlight\Languages\Gsc\GscLanguage;
 use Tempest\Highlight\Languages\Html\HtmlLanguage;
 use Tempest\Highlight\Languages\JavaScript\JavaScriptLanguage;
 use Tempest\Highlight\Languages\Json\JsonLanguage;
@@ -36,6 +37,7 @@ final class Highlighter
             ->setLanguage('css', new CssLanguage())
             ->setLanguage('doc', new DocCommentLanguage())
             ->setLanguage('gdscript', new GdscriptLanguage())
+            ->setLanguage('gsc', new GscLanguage())
             ->setLanguage('html', new HtmlLanguage())
             ->setLanguage('js', new JavaScriptLanguage())
             ->setLanguage('json', new JsonLanguage())
