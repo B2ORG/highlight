@@ -37,7 +37,7 @@ $contents = $markdown->convert(file_get_contents(__DIR__ . DIRECTORY_SEPARATOR .
 <head>
     <title>Test</title>
     <style>
-        <?= file_get_contents(__DIR__ . '/../src/Themes/highlight-light-lite.css') ?>
+        <?= file_get_contents(__DIR__ . '/../src/Themes/highlight-gsc.css') ?>
 
         body {
             font-size: 15px;
