@@ -6,8 +6,7 @@ You can read about why I started this package [here](https://stitcher.io/blog/a-
 - [Quickstart](#quickstart)
 - [Supported languages](#supported-languages)
 - [Themes](#themes)
-  - [For the web](#for-the-web)
-  - [For the terminal](#for-the-terminal)
+- [Gutter](#gutter)
 - [Special highlighting tags](#special-highlighting-tags)
   - [Emphasize strong and blur](#emphasize-strong-and-blur)
   - [Additions and deletions](#additions-and-deletions)
@@ -36,18 +35,25 @@ All supported languages can be found in the [Languages folder](./src/Languages).
 
 ## Themes
 
-### For the web
-
-For HTML rendering, you can use one of the provided themes that comes with this package:
+There are a [bunch of themes](./src/Themes) included in this package. You can load them either by importing the correct CSS file into your project's CSS file, or you can manually copy a stylesheet.
 
 ```css
 @import "../vendor/tempest/highlight/src/Themes/highlight-light-lite.css";
-@import "../vendor/tempest/highlight/src/Themes/highlight-dark-lite.css";
 ```
 
 You can build your own CSS theme with just a couple of classes, copy over [the base stylesheet](./src/Themes/highlight-light-lite.css), and make adjustments however you like. Note that `pre` tag styling isn't included in this package.
 
-### For the terminal
+### Inline themes
+
+If you don't want to or can't load a CSS file, you can opt to use the `InlineTheme` class. This theme takes the path to a CSS file, and will parse it into inline styles:
+
+```php
+$highlighter = (new Highlighter(new InlineTheme(__DIR__ . '/../src/Themes/solarized-dark.css')));
+```
+
+### Terminal themes
+
+Terminal themes are more limited because of their limited styling options. Right now there's one terminal theme provided: `LightTerminalTheme`. More terminal themes are planned to be added in the future.
 
 ```php
 use Tempest\Highlight\Highlighter;
@@ -59,6 +65,26 @@ echo $highlighter->parse($code, 'php');
 ```
 
 ![](./.github/terminal.png)
+
+## Gutter
+
+This package can render an optional gutter if needed. 
+
+```php
+$highlighter = (new Highlighter())->withGutter(startAt: 10);
+```
+
+The gutter will show additions and deletions, and can start at any given line number:
+
+![](./.github/highlight-4.png)
+
+Finally, you can enable gutter rendering on the fly if you're using [commonmark code blocks](#commonmark-integration) by appending `{startAt}` to the language definition:
+
+<pre>
+&#96;&#96;&#96;php{1}
+echo 'hi'!
+&#96;&#96;&#96;
+</pre>
 
 ## Special highlighting tags
 

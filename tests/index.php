@@ -9,13 +9,17 @@ use League\CommonMark\Extension\CommonMark\Node\Inline\Code;
 use League\CommonMark\MarkdownConverter;
 use Tempest\Highlight\CommonMark\CodeBlockRenderer;
 use Tempest\Highlight\CommonMark\InlineCodeBlockRenderer;
+use Tempest\Highlight\Highlighter;
+use Tempest\Highlight\Themes\InlineTheme;
 
 $environment = new Environment();
 
+$highlighter = (new Highlighter(new InlineTheme(__DIR__ . '/../src/Themes/highlight-light-lite.css')))->withGutter();
+
 $environment
     ->addExtension(new CommonMarkCoreExtension())
-    ->addRenderer(FencedCode::class, new CodeBlockRenderer())
-    ->addRenderer(Code::class, new InlineCodeBlockRenderer())
+    ->addRenderer(FencedCode::class, new CodeBlockRenderer($highlighter))
+    ->addRenderer(Code::class, new InlineCodeBlockRenderer($highlighter))
 ;
 
 $markdown = new MarkdownConverter($environment);
@@ -52,10 +56,10 @@ $contents = $markdown->convert(file_get_contents(__DIR__ . DIRECTORY_SEPARATOR .
             padding: .1em;
         }
 
-        .hl {
+        pre {
             margin: 3em auto;
             box-shadow: 0 0 10px 0 #00000044;
-            padding: 1em 2em;
+            padding: 2em 2em 2em 1ch;
             /*background-color: #fafafa;*/
             border-radius: 3px;
             color: #000;
@@ -71,9 +75,7 @@ $contents = $markdown->convert(file_get_contents(__DIR__ . DIRECTORY_SEPARATOR .
 </head>
 <body>
 <div class="container">
-    <div class="hl">
-        <?= $contents ?>
-    </div>
+    <?= $contents ?>
 </div>
 </body>
 </html>

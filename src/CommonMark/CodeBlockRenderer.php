@@ -9,25 +9,36 @@ use League\CommonMark\Extension\CommonMark\Node\Block\FencedCode;
 use League\CommonMark\Node\Node;
 use League\CommonMark\Renderer\ChildNodeRendererInterface;
 use League\CommonMark\Renderer\NodeRendererInterface;
-use League\CommonMark\Util\HtmlElement;
 use Tempest\Highlight\Highlighter;
+use Tempest\Highlight\WithPre;
 
-class CodeBlockRenderer implements NodeRendererInterface
+final class CodeBlockRenderer implements NodeRendererInterface
 {
+    public function __construct(
+        private Highlighter $highlighter = new Highlighter(),
+    ) {
+    }
+
     public function render(Node $node, ChildNodeRendererInterface $childRenderer)
     {
         if (! $node instanceof FencedCode) {
             throw new InvalidArgumentException('Block must be instance of ' . FencedCode::class);
         }
 
-        $highlight = new Highlighter();
-        $code = $node->getLiteral();
-        $language = $node->getInfoWords()[0] ?? 'txt';
+        preg_match('/^(?<language>[\w]+)(\{(?<startAt>[\d]+)\})?/', $node->getInfoWords()[0] ?? 'txt', $matches);
 
-        return new HtmlElement(
-            'pre',
-            [],
-            $highlight->parse($code, $language)
-        );
+        if ($startAt = ($matches['startAt']) ?? null) {
+            $this->highlighter->withGutter((int)$startAt);
+        }
+
+        $parsed = $this->highlighter->parse($node->getLiteral(), $matches['language']);
+
+        $theme = $this->highlighter->getTheme();
+
+        if ($theme instanceof WithPre) {
+            return $theme->preBefore() . $parsed . $theme->preAfter();
+        } else {
+            return '<pre data-lang="' . $matches['language'] . '">' . $parsed . '</pre>';
+        }
     }
 }
