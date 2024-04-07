@@ -60,7 +60,6 @@ class GscLanguage extends BaseLanguage
             new KeywordPattern('break'),
             new KeywordPattern('case'),
             new KeywordPattern('continue'),
-            /** @todo Not highlighted (collon in switch statement i think) */
             new KeywordPattern('default'),
             new KeywordPattern('else'),
             new KeywordPattern('endon'),
