@@ -19,16 +19,16 @@ use Tempest\Highlight\Languages\Gsc\Patterns\StructPropertyPattern;
 
 class GscLanguage extends BaseLanguage
 {
-    // public function getInjections(): array
-    // {
-    //     return [
-    //         ...parent::getInjections(),
+    public function getInjections(): array
+    {
+        return [
+            ...parent::getInjections(),
 
-    //         // new BuiltInFunctionInjection(),
-    //         // new PlayerFunctionsInjection(),
-    //         // new PreprocessorInjection(),
-    //     ];
-    // }
+            // new BuiltInFunctionInjection(),
+            // new PlayerFunctionsInjection(),
+            new PreprocessorInjection(),
+        ];
+    }
 
     public function getPatterns(): array
     {
