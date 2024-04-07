@@ -7,6 +7,9 @@ namespace Tempest\Highlight\Languages\Gsc;
 use Tempest\Highlight\Languages\Base\BaseLanguage;
 use Tempest\Highlight\Languages\Gsc\Injections\PreprocessorInjection;
 use Tempest\Highlight\Languages\Gsc\Patterns\ConstVariablePattern;
+use Tempest\Highlight\Languages\Gsc\Patterns\FunctionPathPattern;
+use Tempest\Highlight\Languages\Gsc\Patterns\FunctionPattern;
+use Tempest\Highlight\Languages\Gsc\Patterns\FunctionRefPattern;
 use Tempest\Highlight\Languages\Gsc\Patterns\KeywordPattern;
 use Tempest\Highlight\Languages\Gsc\Patterns\MultilineDevBlockCommentPattern;
 use Tempest\Highlight\Languages\Gsc\Patterns\MultilineSingleDocCommentPattern;
@@ -24,8 +27,6 @@ class GscLanguage extends BaseLanguage
         return [
             ...parent::getInjections(),
 
-            // new BuiltInFunctionInjection(),
-            // new PlayerFunctionsInjection(),
             new PreprocessorInjection(),
         ];
     }
@@ -53,6 +54,7 @@ class GscLanguage extends BaseLanguage
             new OperatorPattern('>='),
             new OperatorPattern('>'),
             new OperatorPattern('!'),
+            new OperatorPattern(':', occurances: 2),
 
             // KEYWORDS
             new KeywordPattern('break'),
@@ -87,6 +89,11 @@ class GscLanguage extends BaseLanguage
             new ConstVariablePattern(pattern: 'false', nonWordEnding: true),
             new ConstVariablePattern(pattern: 'undefined', nonWordEnding: true),
             // new ConstVariablePattern(),
+
+            // TYPES
+            new FunctionRefPattern(),
+            new FunctionPathPattern(),
+            new FunctionPattern(),
 
             // PROPERTIES
             /** @todo Not detected when used on function call, eg get_round_enemy_array().size */
