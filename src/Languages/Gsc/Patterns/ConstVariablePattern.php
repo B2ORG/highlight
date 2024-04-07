@@ -19,11 +19,11 @@ final class ConstVariablePattern implements Pattern
 
     public function getPattern(): string
     {
-        $pattern = "/[^\w](?<match>" 
-                . ($this->pattern ?? "[A-Z][A-Z0-9_]+") 
-                . ")" 
-                . ($this->nonWordEnding ? "[^\w]" : "") 
-                . "/m";
+        $pattern = '/[^\w](?<match>'
+                . ($this->pattern ?? '[A-Z][A-Z0-9_]+')
+                . ')'
+                . ($this->nonWordEnding ? '[^\w]' : '')
+                . '/m';
         return $pattern;
     }
 

@@ -19,7 +19,7 @@ final readonly class NumericValuePattern implements Pattern
 
     public function getPattern(): string
     {
-        return "/[\W](?<match>[-]?[0-9\.]+)/m";
+        return '/[\W](?<match>[-]?[0-9\.]+)/m';
     }
 
     public function getTokenType(): TokenTypeEnum

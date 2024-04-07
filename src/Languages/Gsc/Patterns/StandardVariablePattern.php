@@ -19,7 +19,7 @@ final class StandardVariablePattern implements Pattern
 
     public function getPattern(): string
     {
-        return "/[^\w](?<match>{$this->stdVar})[^\w]/m";
+        return '/[^\w](?<match>' . $this->stdVar . ')[^\w]/m';
     }
 
     public function getTokenType(): TokenTypeEnum

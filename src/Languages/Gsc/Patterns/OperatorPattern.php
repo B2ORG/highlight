@@ -20,8 +20,8 @@ final class OperatorPattern implements Pattern
     public function getPattern(): string
     {
         return match ($this->occurances) {
-            1, 2 => "/(?<match>" . str_repeat($this->escapeOperators(), $this->occurances) . ")/",
-            3 => "/(?<match>[" . $this->escapeOperators() . "]{1,2})/",
+            1, 2 => '(?<match>' . str_repeat($this->escapeOperators(), $this->occurances) . ')',
+            3 => '(?<match>[' . $this->escapeOperators() . ']{1,2})',
         };
     }
 
