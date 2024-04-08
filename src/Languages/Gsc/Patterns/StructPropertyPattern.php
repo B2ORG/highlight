@@ -17,7 +17,7 @@ final readonly class StructPropertyPattern implements Pattern
 
     public function getPattern(): string
     {
-        return '/[\w]+\.(?<match>[A-Za-z][\w]+)[\W]/';
+        return '/\.(?<match>[A-Za-z][\w]+)\b/';
     }
 
     public function getTokenType(): TokenTypeEnum
