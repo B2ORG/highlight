@@ -9,14 +9,14 @@ use Tempest\Highlight\Pattern;
 use Tempest\Highlight\PatternTest;
 use Tempest\Highlight\Tokens\TokenTypeEnum;
 
-#[PatternTest(input: 'foo\bar::baz()', output: 'foo\bar')]
+#[PatternTest(input: 'foo\bar::baz()', output: 'baz')]
 final readonly class FunctionPathPattern implements Pattern
 {
     use IsPattern;
 
     public function getPattern(): string
     {
-        return '/(?<match>[\w\\\\\\/]*::[\w]+)/';
+        return '/(?<match>::\w+)/';
     }
 
     public function getTokenType(): TokenTypeEnum

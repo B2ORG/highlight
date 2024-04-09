@@ -16,7 +16,7 @@ final readonly class FunctionPattern implements Pattern
 
     public function getPattern(): string
     {
-        return '/\b(?<match>[\w]+)[\s]*\(/';
+        return '/\b(?<match>[\w]+)\(/';
     }
 
     public function getTokenType(): TokenTypeEnum
